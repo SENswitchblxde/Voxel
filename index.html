@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>VOXEL: Ascent</title>
+<meta name="description" content="A browser voxel survival game. Mine deeper, forge better tools, survive the night and light the Beacon.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Cpath fill=%22%235b45e0%22 d=%22M8 1l7 3.5v7L8 15 1 11.5v-7z%22/%3E%3Cpath fill=%22%235ff0ff%22 d=%22M8 1l7 3.5L8 8 1 4.5z%22/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js" } }</script>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<div id="hud" class="hidden">
+  <div id="cross"></div>
+  <div id="ring"></div>
+  <div id="quest"><div class="qh">OBJECTIVE <span id="qn"></span></div><div id="qt"></div><div id="qd"></div></div>
+  <div id="info"></div>
+  <div id="hearts"></div>
+  <div id="hotbar"></div>
+  <div id="held"></div>
+  <div id="toasts"></div>
+  <div id="tip"></div>
+  <div id="vignette"></div>
+  <div id="loading">Generating terrain…</div>
+</div>
+
+<div id="menu" class="screen">
+  <div class="card">
+    <h1>VOXEL<span>ASCENT</span></h1>
+    <p class="tag">Mine deeper. Forge better tools. Survive the night. Light the Beacon.</p>
+    <div class="row"><label>Seed <input id="seed" placeholder="random" maxlength="24"></label></div>
+    <div class="row btns">
+      <button id="btnContinue" class="hidden">Continue</button>
+      <button id="btnNew">New World</button>
+    </div>
+    <div class="controls">
+      <div><b>WASD</b> move · <b>Space</b> jump/swim · <b>Shift</b> sprint</div>
+      <div><b>Left-click</b> (hold) mine / attack · <b>Right-click</b> place / use / eat</div>
+      <div><b>1–9</b> / wheel select · <b>E</b> inventory &amp; crafting · <b>Esc</b> pause</div>
+      <div class="dim">Touch controls appear automatically on phones and tablets.</div>
+    </div>
+  </div>
+</div>
+
+<div id="pause" class="screen hidden">
+  <div class="card">
+    <h2>Paused</h2>
+    <div class="row"><label>Render distance <input id="rd" type="range" min="2" max="8" step="1"> <span id="rdv"></span></label></div>
+    <div class="row"><label>Mouse sensitivity <input id="sens" type="range" min="0.3" max="2.5" step="0.1"></label></div>
+    <div class="row btns">
+      <button id="btnResume">Resume</button>
+      <button id="btnQuit" class="ghost">Save &amp; Quit</button>
+    </div>
+    <div id="pstats" class="dim"></div>
+  </div>
+</div>
+
+<div id="inv" class="screen hidden">
+  <div class="panel">
+    <div class="col">
+      <h3>Inventory</h3>
+      <div id="grid" class="grid"></div>
+      <div class="sep"></div>
+      <div id="gridHot" class="grid"></div>
+      <div class="dim small">Click to pick up / place. Shift-click moves between hotbar and backpack.</div>
+    </div>
+    <div class="col recipes">
+      <h3>Crafting <span id="stations"></span></h3>
+      <label class="small"><input type="checkbox" id="onlyCraftable"> Only show what I can make</label>
+      <div id="recipes"></div>
+    </div>
+    <button id="btnCloseInv" class="close">✕</button>
+  </div>
+</div>
+
+<div id="dead" class="screen hidden">
+  <div class="card"><h2 class="red">You died</h2><p id="deadMsg" class="dim"></p><div class="row btns"><button id="btnRespawn">Respawn</button></div></div>
+</div>
+
+<div id="win" class="screen hidden">
+  <div class="card"><h2 class="glow">The Beacon is lit</h2><p id="winMsg"></p><div class="row btns"><button id="btnWinContinue">Keep playing</button></div></div>
+</div>
+
+<div id="touch" class="hidden">
+  <div id="stick"><div id="knob"></div></div>
+  <div class="tbtns">
+    <button data-t="inv">☰</button>
+    <button data-t="place">▣</button>
+    <button data-t="mine">⛏</button>
+    <button data-t="jump">⤒</button>
+  </div>
+  <button id="tPause">❚❚</button>
+</div>
+<div id="cursorItem"></div>
+
+<noscript>This game needs JavaScript and WebGL.</noscript>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
