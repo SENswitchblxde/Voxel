@@ -2,7 +2,7 @@
 
 A browser voxel survival game with a full progression arc. It needs no install and no build step: open it and play.
 
-**▶ Play:** https://senswitchblxde.github.io/voxel/
+**▶ Play:** https://senswitchblxde.github.io/Voxel/
 
 ## The goal
 Light the **Beacon**. To craft it you need materials from every layer of the world, plus essence taken from monsters.
